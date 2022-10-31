@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken'
 import {check, validationResult} from 'express-validator'
 import config from "config";
 import authMiddleware from "../middleware/auth.middleware.js";
+import fileService from "../services/file.service.js";
+import File from '../models/File.js'
 
 const router = new Router()
 
@@ -32,6 +34,7 @@ router.post('/registration',
             const hashPassword = await bcrypt.hash(password, 8)
             const user = new User({email, password: hashPassword})
             await user.save()
+            await fileService.createDir(new File({user: user._id, name: ''}))
             return res.json({message: 'User was created'})
         } catch (e) {
             console.log(e)
@@ -75,7 +78,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/isAuth', authMiddleware, async (req, res) => {
     try {
-        const {_id,email,diskSpace,usedSpace} = await User.findById(req.user.id)
+        const {_id, email, diskSpace, usedSpace} = await User.findById(req.user.id)
         const token = jwt.sign({id: _id},
             config.get("secretKey"), {expiresIn: '1h'})
 
