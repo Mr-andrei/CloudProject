@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { useAppDispatch } from './redux/store/store';
 import { authTC } from './redux/thunk/logInThunks';
 
-// #004D64
 function App() {
     const dispatch = useAppDispatch();
 

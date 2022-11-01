@@ -16,7 +16,6 @@ const LoginPage = () => {
 
     return (
         <div className={style.container}>
-
             <div className={style.form}>
                 <h3 className={style.title}>Sign up</h3>
                 <Input value={email} onChange={setEmail} placeholder='Email'/>
