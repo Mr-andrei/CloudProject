@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 
 import Input from '../../components/Input/Input';
 import Button from "../../components/Button/Button";
-import {useAppDispatch} from "../../redux/store/store";
+import {useAppDispatch} from "../../utills/hooks/ReduxHooks";
 import {registrationTC} from "../../redux/thunk/logInThunks";
 
 import style from './style.module.css'
+
 
 
 const Registration = () => {
